@@ -75,7 +75,7 @@ video::-webkit-media-controls {
 }
 
 .movie-section:focus-within .card,
-.movie-section:focus, .card {
+.movie-section:focus .card { /* remove ,*/
   transform: translate(-25%);
   z-index: 1;
 }
@@ -110,7 +110,7 @@ video::-webkit-media-controls {
 .logo {
   width: 88px;
   height: 22px;
-  background-image: url('https://i.imgur.com/Y9dwM3s.png');
+  background-image: url('https://i.imgur.com/r1Iq6PM.png');
   background-size: 88px;
   margin: 5px;
 }

@@ -18,8 +18,6 @@ const App = () => {
     setGenres(responseBody.data.reference_list.values)
   }
 
-  console.log(limit)
-
   useEffect(() => {
     fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps

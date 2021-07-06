@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Card from "./Card"
 
 const Section = ({ genre }) => {
@@ -31,6 +31,7 @@ const Section = ({ genre }) => {
           <div
             className="more-button"
             onClick={() => {
+              console.log(pageState)
               setPageState(pageState)
               fetchData()
             }}
