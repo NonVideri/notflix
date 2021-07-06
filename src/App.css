@@ -75,7 +75,7 @@ video::-webkit-media-controls {
 }
 
 .movie-section:focus-within .card,
-.movie-section:focus .card { /* remove ,*/
+.movie-section:focus .card {
   transform: translate(-25%);
   z-index: 1;
 }

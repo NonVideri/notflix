@@ -23,14 +23,54 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [limit])
 
+  const [movie, setMovie] = useState(null)
+  const pageState = null
+
+  const getRandomMovie = async () => {
+    const response = await fetch("/.netlify/functions/getMovies", {
+      method: "POST",
+      body: JSON.stringify({ genre: "Sci-Fi", pageState: pageState }),
+    })
+    const responseBody = await response.json()
+    const movies = responseBody.data.movies_by_genre.values
+    setMovie(movies[Math.floor(Math.random() * movies.length)])
+  }
+
+  useEffect(() => {
+    getRandomMovie()
+  }, [])
+
+  const getMovie = async (genre, title) => {
+    const response = await fetch("/.netlify/functions/getMovies", {
+      method: "POST",
+      body: JSON.stringify({ genre: genre, pageState: pageState }),
+    })
+    const responseBody = await response.json()
+    const setFirst = (movies, title) => {
+      for (let movie of movies) {
+        if (movie.title === title) {
+          setMovie(movie)
+          return
+        }
+      }
+    }
+    setFirst(responseBody.data.movies_by_genre.values, title);
+  }
+
+  const handler = (e) => {
+    const genre = e.target.dataset.genre;
+    const title = e.target.dataset.title;
+    getMovie(genre, title);
+  }
+
   return (
     <>
       <NavBar />
-      <HeroSection />
+      <HeroSection movie={movie} />
       {genres && (
         <div className="container">
           {Object.values(genres).map((genre) => (
-            <Section key={genre.value} genre={genre.value} />
+            <Section key={genre.value} genre={genre.value} handler={handler}/>
           ))}
         </div>
       )}

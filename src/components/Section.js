@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Card from "./Card"
 
-const Section = ({ genre }) => {
+const Section = ({ genre, handler }) => {
   const [movies, setMovies] = useState(null)
   const [pageState, setPageState] = useState(null)
 
@@ -26,7 +26,7 @@ const Section = ({ genre }) => {
       {movies && (
         <div className="movie-section">
           {movies.map((movie, index) => (
-            <Card key={index} movie={movie} />
+            <Card key={index} movie={movie} genre={genre} handler={handler} />
           ))}
           <div
             className="more-button"
